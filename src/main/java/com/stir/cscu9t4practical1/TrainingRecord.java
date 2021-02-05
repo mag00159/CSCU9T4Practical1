@@ -31,6 +31,38 @@ public class TrainingRecord {
        return result;
    } // lookupEntry
    
+   public String lookupAllEntries (int d, int m, int y) { 
+        ListIterator <Entry> iter = tr.listIterator();
+        String result = "No entries found";
+        while (iter.hasNext()) { 
+            Entry current = iter.next();
+            if (current.getDay()==d && current.getMonth()==m && current.getYear()==y)
+            {
+                if (result.equals("No entries found")) {
+                result = "";
+                }
+                
+                result += current.getEntry();
+            }
+        }
+        return result;
+    }
+   
+   public String removeEntry(String name, int d, int m, int y) {
+        ListIterator<Entry> iter = tr.listIterator();
+        String result = "No entries have been found";
+        while (iter.hasNext()) 
+        {
+            Entry current = iter.next();
+            if (current.getName().equals(name) && current.getDay()==d && current.getMonth()==m && current.getYear()==y) 
+            {
+                iter.remove();
+                result = "Entry deleted.";
+            }
+        }
+        return result;
+   } //Entry Removed
+   
    // Count the number of entries
    public int getNumberOfEntries(){
        return tr.size();
